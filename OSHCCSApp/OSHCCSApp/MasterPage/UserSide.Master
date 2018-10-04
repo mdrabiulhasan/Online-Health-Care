@@ -1,0 +1,207 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="UserSide.master.cs" Inherits="OSHCCSApp.MasterPage.UserSide" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title > Online Health Care Consulting System</title>
+    <link rel="icon" href="Add Button.ico" />
+    <!-- Bootstrap Core CSS -->
+    <link href="../Contents/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Contents/css/modern-business.css" rel="stylesheet" />
+    <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <script src="../Scripts/moment.min.js"></script>
+    <style>
+        .error {
+            color: red;
+        }
+
+        .container nav a {
+            text-decoration: none;
+            color: red;
+        }
+
+        hr {
+            margin-top: 5px;
+            margin-bottom: 6px;
+            border: 0;
+            border-top: 1px solid #eee;
+        }
+    </style>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body style="padding-top: 0px;">
+
+    <div class="wrapper" style="width: 100%; height: 30px; background-color: lightgray">
+        <div class="container">
+            <nav style="float: right;">
+                <a href="#">Get the App</a>
+                &nbsp;&nbsp; &nbsp;&nbsp;<a href="DoctorHome.aspx">For the Doctor</a>
+                &nbsp;&nbsp; &nbsp;&nbsp;<a href="UserRegistration.aspx">For the Patient</a>
+                &nbsp;&nbsp; &nbsp;&nbsp;<a href="#">Health Feed</a>
+                &nbsp;&nbsp; &nbsp;&nbsp;<a href="DoctorLog.aspx">Login</a>
+            </nav>
+        </div>
+    </div>
+    <div class="wrapper">
+        <form id="UserForm" runat="server" enctype="multipart/form-data" style="background-color: #F5F5F5;">
+            <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0px;">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" <%--data-target="#navbar"--%> data-target="#bs-example-navbar-collapse-1" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="OHCCS.aspx"><i class="fa fa-fw fa-home"></i>OHCC&SS</a>
+                    </div>
+                    <div <%--id="navbar"--%> class="navbar-collapse collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="AskQuestion.aspx"><b><i class="fa fa-language" style="font-size: 18px; color: red"></i>&nbsp;Ask a Question</b></a></li>
+                            <li><a href="DoctorsBookPage.aspx"><b><i class="fa fa-book" style="font-size: 18px; color: red"></i>&nbsp;Book Appointment</b></a></li>
+                            <li><a href="OnlineConsult.aspx"><b><i class="fa fa-edit" style="font-size: 18px; color: red"></i>&nbsp;Online Consult</b></a></li>
+                            <li><a href="HealthCard.aspx"><b><i class="fa fa-book" style="font-size: 18px; color: red"></i>&nbsp;Health Card</b></a></li>
+                            <li><a href="BookLabTests.aspx"><b><i class="fa fa-book" style="font-size: 18px; color: red"></i>&nbsp;Book Lab Test</b></a></li>
+                                                        <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Others</b> <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="Gallery.aspx">Gallery</a>
+                                    </li>
+                                    <li>
+                                        <a href="FAQ.aspx">FAQ Page</a>
+                                    </li>
+                                    <li>
+                                        <a href="DoctorLog.aspx">Sign In</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <asp:DataList ID="DataListDoctorLog" runat="server">
+                                <ItemTemplate>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                            <img src='<%#Eval("photo") %>' style="width: 50px; height: 50px; border-radius: 25px;"></a>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a href="DoctorProfile.aspx">View Profile</a>
+                                            </li>
+                                            <li>
+                                                <a href="EditDoctorProfile.aspx">Edit Profile</a>
+                                            </li>
+                                            <li>
+                                                <a href="AppointmentList.aspx">Appointment List</a>
+                                            </li>
+                                            <li>
+                                                <asp:LinkButton ID="LogoutButton" runat="server" OnClick="LogoutButton_Click">Log Out</asp:LinkButton>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ItemTemplate>
+                            </asp:DataList>
+                            <li class="dropdown">
+                                <asp:DataList ID="DataList1" runat="server">
+                                    <ItemTemplate>
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                            <br />
+                                            <%#Eval("FullName") %></a>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a href="Appointment.aspx">Appointment</a>
+                                            </li>
+                                            <li>
+                                                <asp:LinkButton ID="ULogoutButton" runat="server" OnClick="ULogoutButton_Click">Log Out</asp:LinkButton>
+                                            </li>
+                                        </ul>
+                                    </ItemTemplate>
+                                </asp:DataList>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div>
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+        </form>
+    </div>
+    <div class="wrapper">
+        <!-- Call to Action Section -->
+        <div class="well">
+            <div class="row">
+                <div class="col-md-8">
+                    <p>
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <a class="btn btn-lg btn-default btn-block" href="#">Call to Back</a>
+                </div>
+            </div>
+        </div>
+        <hr />
+    </div>
+    <footer style="background-color: #28363A">
+        <br />
+        <div class="row">
+            <div class="col-sm-5" style="color:white;padding-left:10px;">
+                <asp:Label ID="Label1" runat="server" Text="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Organization:<a href="http://www.updatetechno.com/">Update Tech Ltd.</a></asp:Label><br />
+                <asp:Label ID="Label2" runat="server" Text="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contact No: 0123456789</asp:Label><br />
+                <asp:Label ID="Label3" runat="server" Text="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email:updatetech@mail.com</asp:Label><br />
+                <asp:Label ID="Label4" runat="server" Text="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Location:Mirpur Kalshi,Dhaka-1216</asp:Label>
+            </div>
+            <div class="col-sm-4" style="color:white;">
+                <a href="About.aspx" style="color:white;">About Us</a><br />
+                <a href="#" style="color:white;">Health Tips</a><br />
+                <a href="Contact.aspx" style="color:white;">Contact Us</a><br />
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-sm-4">
+            </div>
+            <div class="col-md-4">
+                <ul class="list-unstyled list-inline list-social-icons">
+                    <li>
+                        <a href="www.fb.com"><i class="fa fa-facebook-square fa-3x"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-linkedin-square fa-3x"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-twitter-square fa-3x"></i></a>
+                    </li>
+                    <li>
+                        <a href="www.google.com"><i class="fa fa-google-plus-square fa-3x"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm-4" style="color:white;">
+                <p>All &copyRights Reserved by Update Tec Ltd.-<%: DateTime.Now.Year %> </p>
+            </div>
+        </div>
+        <br />
+    </footer>
+    <!-- jQuery -->
+    <script src="../Scripts/jquery-3.1.1.js"></script>
+    <!-- Form validation -->
+    <script src="../Scripts/jquery.validate.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../Scripts/bootstrap.min.js"></script>
+
+    <asp:ContentPlaceHolder ID="script" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <%--<script src="../Contents/js/bootstrap.min.js"></script>
+    <script src="../Contents/js/jquery.js"></script>
+    <script src="../Contents/js/jqBootstrapValidation.js"></script>--%>
+</body>
+</html>

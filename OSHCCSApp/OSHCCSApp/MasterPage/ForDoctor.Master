@@ -1,0 +1,207 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="ForDoctor.master.cs" Inherits="OSHCCSApp.MasterPage.ForDoctor" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Online Health Care Consulting System</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <!-- Bootstrap Core CSS -->
+    <link href="../Contents/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Contents/css/modern-business.css" rel="stylesheet" />
+    <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <script src="../Scripts/moment.min.js"></script>
+       <%-- <link href="../Styles/Site.css" rel="stylesheet" />--%>
+    <style>
+        #scheduler_here table {
+            border: none;
+            border-collapse: collapse;
+        }
+
+            #scheduler_here table td {
+                padding: 0;
+                border: none;
+            }
+
+            #scheduler_here table th {
+                padding: none;
+            }
+    </style>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <div class="wrapper">
+        <form id="Doctorform" runat="server" enctype="multipart/form-data" style="background-color: #F5F5F5;">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0px;background-color: white;">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse">
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="OHCCS.aspx"><i class="fa fa-fw fa-home"></i>OHCC&SS</a>
+                </div>
+                <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Featurs <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">Gallery</a>
+                                </li>
+                                <li>
+                                    <a href="#">FAQ Page</a>
+                                </li>
+                                <li>
+                                    <a href="#">Sign In</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="DoctorLogin.aspx">Login</a></li>
+                        <li><a href="DoctorProcess1.aspx">Join OHCC&SS</a></li>
+                        <li>
+                            <asp:DataList ID="DLDoctorLog" runat="server">
+                                <ItemTemplate>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                            <img src='<%#Eval("photo") %>' style="width: 50px; height: 50px; border-radius: 25px;"></a>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a href="DoctorsProfile.aspx">View Profile</a>
+                                            </li>
+                                            <li>
+                                                <a href="UpdateDoctorProfile.aspx">Edit Profile</a>
+                                            </li>
+                                            <li>
+                                                <a href="DoctorProcess1.aspx">Add Process1/Basic Info</a>
+                                            </li>
+                                            <li>
+                                                <a href="DoctorProcess3.aspx">Add Process2/Personal Info</a>
+                                            </li>
+                                            <li>
+                                                <a href="DoctorProcess4.aspx">Add Process4/Consult Info</a>
+                                            </li>
+                                            <li>
+                                                <a href="BookScheduler.aspx">Set Appointment Schedule</a>
+                                            </li>
+                                            <li>
+                                                <a href="ListAppointment.aspx">Appointment List</a>
+                                            </li>
+                                            <li>
+                                                <a href="OnlineConsultList.aspx"">OnLine Consult List</a>
+                                            </li>
+                                            <li>
+                                                <asp:LinkButton ID="LogoutButton" runat="server" OnClick="LogoutButton_Click">Log Out</asp:LinkButton>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ItemTemplate>
+                            </asp:DataList>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="row">
+                <br />
+                <div class="col-sm-3">
+                    <div class="list-group">
+                        <asp:DataList ID="DataListDoctorLog" runat="server">
+                            <ItemTemplate>
+                                <a href="DoctorsProfile.aspx" class="list-group-item">View Profile</a>
+                                <a href="UpdateDoctorProfile.aspx" class="list-group-item">Edit Profile</a>
+                                <a href="DoctorProcess1.aspx" class="list-group-item">Add Process1/Basic Info</a>
+                                <a href="DoctorProcess3.aspx" class="list-group-item">Add Process2/Personal Info</a>
+                                <a href="DoctorProcess4.aspx" class="list-group-item">Add Process4/Consult Info</a>
+                                <a href="BookScheduler.aspx" class="list-group-item">Set Appointment Schedule</a>
+                                <a href="ListAppointment.aspx" class="list-group-item">Appointment List</a>
+                                <a href="OnlineConsultList.aspx" class="list-group-item">OnLine Consult List</a>
+                            </ItemTemplate>
+                        </asp:DataList>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <br />
+                    <%-- <div class="clear hideSkiplink">
+                            <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
+                                <Items>
+                                    <asp:MenuItem NavigateUrl="BookScheduler.aspx" Text="Basic" />
+                                    <asp:MenuItem NavigateUrl="~/Recurring.aspx" Text="Recurring Events" />
+                                </Items>
+                            </asp:Menu>
+                        </div>--%>                   
+                    <div>
+                        
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+            <footer style="background-color: #28363A">
+        <br />
+        <div class="row">
+            <div class="col-sm-5" style="color:white;padding-left:10px;">
+                <asp:Label ID="Label1" runat="server" Text="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Organization:<a href="http://www.updatetechno.com/">Update Tech Ltd.</a></asp:Label><br />
+                <asp:Label ID="Label2" runat="server" Text="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contact No: 0123456789</asp:Label><br />
+                <asp:Label ID="Label3" runat="server" Text="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email:updatetech@mail.com</asp:Label><br />
+                <asp:Label ID="Label4" runat="server" Text="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Location:Mirpur Kalshi,Dhaka-1216</asp:Label>
+            </div>
+            <div class="col-sm-4" style="color:white;">
+                <a href="About.aspx" style="color:white;">About Us</a><br />
+                <a href="#" style="color:white;">Health Tips</a><br />
+                <a href="Contact.aspx" style="color:white;">Contact Us</a><br />
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-sm-4">
+            </div>
+            <div class="col-md-4">
+                <ul class="list-unstyled list-inline list-social-icons">
+                    <li>
+                        <a href="www.fb.com"><i class="fa fa-facebook-square fa-3x"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-linkedin-square fa-3x"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-twitter-square fa-3x"></i></a>
+                    </li>
+                    <li>
+                        <a href="www.google.com"><i class="fa fa-google-plus-square fa-3x"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm-4">
+                <p>All &copyRights Reserved by Update Tec Ltd.-2018</p>
+            </div>
+        </div>
+        <br />
+    </footer>
+        
+    </form>
+    </div>
+    
+    <asp:ContentPlaceHolder ID="script" runat="server">
+    </asp:ContentPlaceHolder>
+    <!-- jQuery -->
+    <script src="../Scripts/jquery-3.1.1.js"></script>
+    <!-- Form validation -->
+    <script src="../Scripts/jquery.validate.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../Scripts/bootstrap.min.js"></script>
+</body>
+</html>

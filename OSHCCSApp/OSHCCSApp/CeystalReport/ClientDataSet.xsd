@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ClientDataSet" targetNamespace="http://tempuri.org/ClientDataSet.xsd" xmlns:mstns="http://tempuri.org/ClientDataSet.xsd" xmlns="http://tempuri.org/ClientDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ClientDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ClientDataSet" msprop:Generator_UserDSName="ClientDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="borrowarInfotbl" msprop:Generator_TableClassName="borrowarInfotblDataTable" msprop:Generator_TableVarName="tableborrowarInfotbl" msprop:Generator_TablePropName="borrowarInfotbl" msprop:Generator_RowDeletingName="borrowarInfotblRowDeleting" msprop:Generator_RowChangingName="borrowarInfotblRowChanging" msprop:Generator_RowEvHandlerName="borrowarInfotblRowChangeEventHandler" msprop:Generator_RowDeletedName="borrowarInfotblRowDeleted" msprop:Generator_UserTableName="borrowarInfotbl" msprop:Generator_RowChangedName="borrowarInfotblRowChanged" msprop:Generator_RowEvArgName="borrowarInfotblRowChangeEvent" msprop:Generator_RowClassName="borrowarInfotblRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:string" />
+              <xs:element name="fullName" msprop:Generator_ColumnVarNameInTable="columnfullName" msprop:Generator_ColumnPropNameInRow="fullName" msprop:Generator_ColumnPropNameInTable="fullNameColumn" msprop:Generator_UserColumnName="fullName" type="xs:string" minOccurs="0" />
+              <xs:element name="phoneNo" msprop:Generator_ColumnVarNameInTable="columnphoneNo" msprop:Generator_ColumnPropNameInRow="phoneNo" msprop:Generator_ColumnPropNameInTable="phoneNoColumn" msprop:Generator_UserColumnName="phoneNo" type="xs:string" minOccurs="0" />
+              <xs:element name="email" msprop:Generator_ColumnVarNameInTable="columnemail" msprop:Generator_ColumnPropNameInRow="email" msprop:Generator_ColumnPropNameInTable="emailColumn" msprop:Generator_UserColumnName="email" type="xs:string" minOccurs="0" />
+              <xs:element name="clientPhoto" msprop:Generator_ColumnVarNameInTable="columnclientPhoto" msprop:Generator_ColumnPropNameInRow="clientPhoto" msprop:Generator_ColumnPropNameInTable="clientPhotoColumn" msprop:Generator_UserColumnName="clientPhoto" type="xs:base64Binary" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:borrowarInfotbl" />
+      <xs:field xpath="mstns:id" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,254 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin.master.cs" Inherits="OSHCCSApp.MasterPage.Admin" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Online Health Care Consulting System</title>
+
+    <link href="../Contents/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Contents/css/modern-business.css" rel="stylesheet" />
+    <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <script src="../Scripts/moment.min.js"></script>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <div class="wrapper">
+        <%--<img src="../UI/images/onb.PNG" style="width: 100%; height: 90px; margin: 0px;" />--%>
+        <form id="adminForm" runat="server" enctype="multipart/form-data">
+            <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.aspx"><i class="fa fa-fw fa-home"></i>OHCC&SS</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <asp:DataList ID="DataListAdminLog" runat="server">
+                            <ItemTemplate>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <img src='<%#Eval("photo") %>' style="width: 50px; height: 50px; border-radius: 25px;"><b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="index.aspx">OHCC&SS</a>
+                                        </li>
+                                        <li>
+                                            <a href="AdminReg.aspx">Admin Registration</a>
+                                        </li>
+                                        <li>
+                                            <a href="AdminView.aspx">Admin Details</a>
+                                        </li>
+                                        <li>
+                                            <a href="GrideView.aspx">Doctors Grid View</a>
+                                        </li>
+                                        <li>
+                                            <a href="AddCategory.aspx">Service & category</a>
+                                        </li>
+                                        <li>
+                                            <a href="AddPackage.aspx">Add Package</a>
+                                        </li>
+                                        <li>
+                                            <a href="pakcagesOrder.aspx">View Package Order</a>
+                                        </li>
+                                        <li>
+                                            <a href="conrtolUser.aspx">Users Grid View</a>
+                                        </li>
+                                        <li>
+                                            <asp:LinkButton ID="btnAdminLogout" runat="server" OnClick="btnAdminLogout_Click">Log Out</asp:LinkButton>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ItemTemplate>
+                        </asp:DataList>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <%--  <li>
+                                    <a href="#">Sign Out</a>
+                                </li>--%>
+                        <%--<li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin Details <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="AdminReg.aspx">Registration</a>
+                                </li>
+                                <li>
+                                    <a href="AdminView.aspx">View Details</a>
+                                </li>
+                            </ul>
+                        </li>--%>
+                        <%--<li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Service Management <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="AddCategory.aspx">Service & category</a>
+                                </li>
+                                <li>
+                                    <a href="AddPackage.aspx">Add Package</a>
+                                </li>
+                                <li>
+                                    <a href="pakcagesOrder.aspx">View Package Order</a>
+                                </li>
+                            </ul>
+                        </li>--%>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Others <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">Profile Seltting</a>
+                                </li>
+                                <li>
+                                    <a href="#">FAQ Page</a>
+                                </li>
+                                <li>
+                                    <a href="#">Sign Out</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <br />
+            <div class="row">
+                <div class="col-sm-2">
+                    <div style="padding-left: 10px; text-decoration: none;">
+                        <div class="panel panel-info" style="margin-bottom: 0;">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a href="index.aspx" class="list-group-item">Dashboard</a>
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="panel panel-info" style="margin-bottom: 0;">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+                                        <h5>Admin <b class="caret"></b></h5>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse2" class="panel-collapse collapse">
+                                <a href="AdminReg.aspx" class="list-group-item">Registration</a>
+                                <a href="AdminView.aspx" class="list-group-item">View Details</a>
+                            </div>
+                        </div>
+                        <div class="panel panel-info" style="margin-bottom: 0;">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+                                        <h5>Service Management <b class="caret"></b></h5>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse3" class="panel-collapse collapse">
+                                <a href="AddCategory.aspx" class="list-group-item">Service & category</a>
+                                <a href="AddPackage.aspx" class="list-group-item">Add Package</a>
+                                <a href="AddLabTest.aspx" class="list-group-item">Add Lab Test</a>
+                                <a href="#" class="list-group-item">View LabTest Info</a>
+                                <a href="pakcagesOrder.aspx" class="list-group-item">View Package Order</a>
+                            </div>
+                        </div>
+                        <div class="panel panel-info" style="margin-bottom: 0;">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse4">
+                                        <h5>Doctors<b class="caret"></b></h5>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse4" class="panel-collapse collapse">
+                                <a href="#" class="list-group-item">Registration</a>
+                                <a href="GrideView.aspx" class="list-group-item">View Details</a>
+
+                            </div>
+                        </div>
+                        <div class="panel panel-info" style="margin-bottom: 0;">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse5">
+                                        <h5>Users<b class="caret"></b></h5>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse5" class="panel-collapse collapse">
+                                <a href="conrtolUser.aspx" class="list-group-item">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="col-lg-10">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+        </form>
+       <footer style="background-color: #28363A">
+        <br />
+        <div class="row">
+            <div class="col-sm-5" style="color:white;padding-left:10px;">
+                <asp:Label ID="Label1" runat="server" Text="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Organization:<a href="http://www.updatetechno.com/">Update Tech Ltd.</a></asp:Label><br />
+                <asp:Label ID="Label2" runat="server" Text="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contact No: 0123456789</asp:Label><br />
+                <asp:Label ID="Label3" runat="server" Text="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email:updatetech@mail.com</asp:Label><br />
+                <asp:Label ID="Label4" runat="server" Text="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Location:Mirpur Kalshi,Dhaka-1216</asp:Label>
+            </div>
+            <div class="col-sm-4" style="color:white;">
+                <a href="About.aspx" style="color:white;">About Us</a><br />
+                <a href="#" style="color:white;">Health Tips</a><br />
+                <a href="Contact.aspx" style="color:white;">Contact Us</a><br />
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-sm-4">
+            </div>
+            <div class="col-md-4">
+                <ul class="list-unstyled list-inline list-social-icons">
+                    <li>
+                        <a href="www.fb.com"><i class="fa fa-facebook-square fa-3x"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-linkedin-square fa-3x"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-twitter-square fa-3x"></i></a>
+                    </li>
+                    <li>
+                        <a href="www.google.com"><i class="fa fa-google-plus-square fa-3x"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm-4" style="color:white;" >
+                <p >All &copyRights Reserved by Update Tec Ltd.-2018</p>
+            </div>
+        </div>
+        <br />
+    </footer>
+        <!-- jQuery -->
+        <script src="../Scripts/jquery-3.1.1.js"></script>
+        <!-- Form validation -->
+        <script src="../Scripts/jquery.validate.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="../Scripts/bootstrap.min.js"></script>
+
+        <asp:ContentPlaceHolder ID="script" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+
+</body>
+</html>
